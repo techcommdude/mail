@@ -28,7 +28,47 @@ function load_mailbox(mailbox) {
   document.querySelector('#emails-view').style.display = 'block';
   document.querySelector('#compose-view').style.display = 'none';
 
-  // Show the mailbox name
+  // Show the mailbox name with the first name capitalized.
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() +
     mailbox.slice(1)}</h3>`;
-}
+
+  //TODO: todo
+
+//   document.getElementById('#inbox').onclick = function() {
+//     alert("button was clicked");
+//  }​;​
+
+  // document.querySelector('#inbox').addEventListener('click', function(), alert("button was clicked"));
+
+  // document.querySelector('#inbox').addEventListener('click', function() {
+  //   const name = document.querySelector('#inbox').value;
+  //   alert(`Hello, ${name}`);
+
+  //   const name = document.querySelector('#name').value;
+  //               alert(`Hello, ${name}`);
+
+  // document.querySelector('#inbox').addEventListener('click', () => load_mailbox('inbox'));
+
+  // if (mailbox === 'inbox') {alert("button was clicked")}
+
+
+  if (mailbox === 'inbox'){
+    document.querySelector('#mailbox').innerHTML = `<h3>${mailbox}</h3>`;}
+  else {
+
+    document.querySelector('#mailbox').innerHTML = 'Not in the inbox.';}
+  }
+
+
+
+
+  fetch('/emails/inbox')
+  .then(response => response.json())
+  .then(emails => {
+    // Print emails
+    console.log(emails);
+
+    return false;
+
+    // ... do something else with emails ...
+});
