@@ -16,6 +16,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function compose_email() {
+//TODO: setting the values to
+  // document.querySelector("#inboxEmails").innerHTML = '';
+  // document.querySelector("#sentEmails").innerHTML = '';
+  // debugger;
+  // document.querySelector("#inboxEmails").value = '';
+  // document.querySelector("#sentEmails").value = '';
+  // document.querySelector("#archiveEmails").value = '';
+
+  // document.getElementById('inboxEmails').value = '';
+  // document.getElementById('sentEmails').value = '';
+  // document.getElementById('archiveEmails').value = '';
+
+  document.querySelector("#inboxEmails").style.display = "none";
+  document.querySelector("#sentEmails").style.display = "none";
+  document.querySelector("#archiveEmails").style.display = "none";
+
+
   // Show compose view and hide other views
   document.querySelector("#emails-view").style.display = "none";
   document.querySelector("#compose-view").style.display = "block";
@@ -50,6 +67,7 @@ function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
   document.querySelector("#emails-view").style.display = "block";
   document.querySelector("#compose-view").style.display = "none";
+  document.querySelector("#inboxEmails").style.display = "block";
 
   // Show the mailbox name with the first name capitalized.
   document.querySelector("#emails-view").innerHTML = `<h3>${
@@ -60,10 +78,14 @@ function load_mailbox(mailbox) {
 
   if (mailbox === "inbox") {
     // document.querySelector("#mailbox").innerHTML = `<h3>${mailbox}</h3>`;
-    debugger;
+    //debugger;
     document.querySelector("#mailbox").innerHTML = "In the inbox";
 
     //TODO: When the user clicks on the link for the email.  then call the email view for display.
+
+    // document.querySelector("#inboxEmails").style.display = "none";
+    document.querySelector("#sentEmails").style.display = "none";
+    document.querySelector("#archiveEmails").style.display = "none";
 
     fetch("/emails/inbox")
       .then((response) => response.json())
@@ -76,7 +98,7 @@ function load_mailbox(mailbox) {
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
-          debugger;
+          //debugger;
 
           // Create a list item for the new task and add the task to it
           const sender = document.createElement("li");
@@ -100,7 +122,15 @@ function load_mailbox(mailbox) {
         // ... do something else with emails ...
       });
   } else if (mailbox === "sent") {
+
+    document.querySelector("#inboxEmails").style.display = "none";
+    document.querySelector("#sentEmails").style.display = "block";
+    document.querySelector("#archiveEmails").style.display = "none";
+
+
     document.querySelector("#mailbox").innerHTML = "In the sent box";
+    // document.querySelector("#inboxEmails").innerHTML = '';
+
     fetch("/emails/sent")
       .then((response) => response.json())
       .then((emails) => {
@@ -108,6 +138,9 @@ function load_mailbox(mailbox) {
         console.log(emails);
 
         // ... do something else with emails ...
+        debugger;
+
+        //TODO: Somehow set the inbox emails to null before this?  The below works and creates a new list for sent email.
 
         const inboxHTML = document.querySelector("#sentEmails");
 
@@ -115,14 +148,35 @@ function load_mailbox(mailbox) {
           let obj = emails[i];
 
           debugger;
+
+          // Create a list item for the new task and add the task to it
+          const recipients = document.createElement("li");
+          recipients.innerHTML = obj.recipients;
+          document.querySelector("#sentEmails").append(recipients);
+
+          const subject = document.createElement("li");
+          subject.innerHTML = obj.subject;
+          document.querySelector("#sentEmails").append(subject);
+
+          const timestamp = document.createElement("li");
+          timestamp.innerHTML = obj.timestamp;
+          document.querySelector("#sentEmails").append(timestamp);
+
+
           console.log(obj.id);
           console.log(obj.recipients);
           console.log(obj.subject);
           console.log(obj.timestamp);
-          debugger;
+          //debugger;
         }
       });
   } else {
+
+
+    document.querySelector("#inboxEmails").style.display = "none";
+    document.querySelector("#sentEmails").style.display = "none";
+    // document.querySelector("#archiveEmails").style.display = "none";
+
     document.querySelector("#mailbox").innerHTML = "In the archive mail box.";
     fetch("/emails/archive")
       .then((response) => response.json())
