@@ -67,7 +67,7 @@ function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
   document.querySelector("#emails-view").style.display = "block";
   document.querySelector("#compose-view").style.display = "none";
-  document.querySelector("#inboxEmails").style.display = "block";
+  document.querySelector("#inboxEmails").style.display = "flex";
 
   // Show the mailbox name with the first name capitalized.
   document.querySelector("#emails-view").innerHTML = `<h3>${
@@ -124,7 +124,7 @@ function load_mailbox(mailbox) {
   } else if (mailbox === "sent") {
 
     document.querySelector("#inboxEmails").style.display = "none";
-    document.querySelector("#sentEmails").style.display = "block";
+    document.querySelector("#sentEmails").style.display = "flex";
     document.querySelector("#archiveEmails").style.display = "none";
 
 
@@ -175,7 +175,7 @@ function load_mailbox(mailbox) {
 
     document.querySelector("#inboxEmails").style.display = "none";
     document.querySelector("#sentEmails").style.display = "none";
-    // document.querySelector("#archiveEmails").style.display = "none";
+    document.querySelector("#archiveEmails").style.display = "flex";
 
     document.querySelector("#mailbox").innerHTML = "In the archive mail box.";
     fetch("/emails/archive")

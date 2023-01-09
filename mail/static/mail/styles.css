@@ -1,3 +1,25 @@
 textarea {
     min-height: 400px;
 }
+
+
+ul#inboxEmails {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+ul#sentEmails {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+ul#archiveEmails {
+
+    display: flex;
+    flex-direction: column;
+
+}
