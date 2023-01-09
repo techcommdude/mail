@@ -31,6 +31,7 @@ function load_mailbox(mailbox) {
   // Show the mailbox name with the first name capitalized.
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() +
     mailbox.slice(1)}</h3>`;
+    //debugger;
 
   //TODO: todo
 
@@ -51,15 +52,13 @@ function load_mailbox(mailbox) {
 
   // if (mailbox === 'inbox') {alert("button was clicked")}
 
-
+  debugger;
   if (mailbox === 'inbox'){
     document.querySelector('#mailbox').innerHTML = `<h3>${mailbox}</h3>`;}
   else {
 
     document.querySelector('#mailbox').innerHTML = 'Not in the inbox.';}
   }
-
-
 
 
   fetch('/emails/inbox')
