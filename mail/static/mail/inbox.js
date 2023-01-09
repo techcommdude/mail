@@ -65,7 +65,6 @@ function load_mailbox(mailbox) {
 
     //TODO: When the user clicks on the link for the email.  then call the email view for display.
 
-
     fetch("/emails/inbox")
       .then((response) => response.json())
       .then((emails) => {
@@ -79,23 +78,24 @@ function load_mailbox(mailbox) {
           let obj = emails[i];
           debugger;
 
-        // Create a list item for the new task and add the task to it
-          const sender = document.createElement('li');
+          // Create a list item for the new task and add the task to it
+          const sender = document.createElement("li");
           sender.innerHTML = obj.sender;
-          document.querySelector('#inboxEmails').append(sender);
+          document.querySelector("#inboxEmails").append(sender);
 
-          const subject = document.createElement('li');
+          const subject = document.createElement("li");
           subject.innerHTML = obj.subject;
-          document.querySelector('#inboxEmails').append(subject);
+          document.querySelector("#inboxEmails").append(subject);
+
+          const timestamp = document.createElement("li");
+          timestamp.innerHTML = obj.timestamp;
+          document.querySelector("#inboxEmails").append(timestamp);
 
           console.log(obj.id);
           console.log(obj.sender);
           console.log(obj.subject);
           console.log(obj.timestamp);
-          debugger;
         }
-
-
 
         // ... do something else with emails ...
       });
@@ -121,13 +121,6 @@ function load_mailbox(mailbox) {
           console.log(obj.timestamp);
           debugger;
         }
-
-
-
-
-
-
-
       });
   } else {
     document.querySelector("#mailbox").innerHTML = "In the archive mail box.";
@@ -138,7 +131,7 @@ function load_mailbox(mailbox) {
         console.log(emails);
 
         // ... do something else with emails ...
-//TODO: Need to test for archived value to display here. If statement?
+        //TODO: Need to test for archived value to display here. If statement?
         const inboxHTML = document.querySelector("#sentEmails");
 
         for (let i = 0; i < emails.length; i++) {
@@ -151,12 +144,6 @@ function load_mailbox(mailbox) {
           console.log(obj.archived);
           debugger;
         }
-
-
-
-
-
-
       });
   }
 }
