@@ -94,10 +94,6 @@ function load_mailbox(mailbox) {
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.sender;
-          //TODO: need to select for the div underneath #containerInbox with no class or ID.
-
-
-
 
           document.querySelector(".inbox" + counter).append(sender3);
 
@@ -112,6 +108,22 @@ function load_mailbox(mailbox) {
           timestamp3.className = "right";
           timestamp3.innerHTML = obj.timestamp;
           document.querySelector(".inbox" + counter).append(timestamp3);
+
+          //TODO: need to update stylesheet here.  This marks things as read.
+          if (obj.read === true) {
+            console.log(obj.id)
+            //Change the classname
+            sender2.className = "inbox" + counter + "_read";
+
+          }
+
+          else {
+            console.log(obj.id)
+          }
+
+
+
+
 
           counter++
 

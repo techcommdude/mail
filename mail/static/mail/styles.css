@@ -35,7 +35,7 @@ ul#archiveEmails {
 }
 
 .left {
-  width: 30%;
+  width: 35%;
 }
 
 .middle {
@@ -43,10 +43,12 @@ ul#archiveEmails {
 }
 
 .right {
-  width: 25%;
+  width: 15%;
 }
 
 [class*="inbox"] {
   width: 100%;
   display: flex;
+  border: solid;
+  border-width: thin;
 }
