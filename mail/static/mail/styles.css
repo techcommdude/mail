@@ -6,20 +6,23 @@ textarea {
 ul#inboxEmails {
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    list-style: none;
 
 }
 
 ul#sentEmails {
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    list-style: none;
 
 }
 
 ul#archiveEmails {
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    list-style: none;
 
 }

@@ -16,22 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function compose_email() {
-//TODO: setting the values to
-  // document.querySelector("#inboxEmails").innerHTML = '';
-  // document.querySelector("#sentEmails").innerHTML = '';
-  // debugger;
-  // document.querySelector("#inboxEmails").value = '';
-  // document.querySelector("#sentEmails").value = '';
-  // document.querySelector("#archiveEmails").value = '';
-
-  // document.getElementById('inboxEmails').value = '';
-  // document.getElementById('sentEmails').value = '';
-  // document.getElementById('archiveEmails').value = '';
+  //TODO: setting the values to
 
   document.querySelector("#inboxEmails").style.display = "none";
   document.querySelector("#sentEmails").style.display = "none";
   document.querySelector("#archiveEmails").style.display = "none";
-
 
   // Show compose view and hide other views
   document.querySelector("#emails-view").style.display = "none";
@@ -46,7 +35,7 @@ function compose_email() {
 
   //TODO:Add the logic here for composing.
 
-  debugger;
+  //debugger;
 
   fetch("/emails", {
     method: "POST",
@@ -77,13 +66,10 @@ function load_mailbox(mailbox) {
   //TODO: logic here  for the various mailboxes.
 
   if (mailbox === "inbox") {
-    // document.querySelector("#mailbox").innerHTML = `<h3>${mailbox}</h3>`;
-    //debugger;
     document.querySelector("#mailbox").innerHTML = "In the inbox";
 
     //TODO: When the user clicks on the link for the email.  then call the email view for display.
 
-    // document.querySelector("#inboxEmails").style.display = "none";
     document.querySelector("#sentEmails").style.display = "none";
     document.querySelector("#archiveEmails").style.display = "none";
 
@@ -100,7 +86,8 @@ function load_mailbox(mailbox) {
           let obj = emails[i];
           //debugger;
 
-          // Create a list item for the new task and add the task to it
+          // Create the div tags for the inbox emails
+
           const sender = document.createElement("li");
           sender.innerHTML = obj.sender;
           document.querySelector("#inboxEmails").append(sender);
@@ -122,11 +109,9 @@ function load_mailbox(mailbox) {
         // ... do something else with emails ...
       });
   } else if (mailbox === "sent") {
-
     document.querySelector("#inboxEmails").style.display = "none";
     document.querySelector("#sentEmails").style.display = "flex";
     document.querySelector("#archiveEmails").style.display = "none";
-
 
     document.querySelector("#mailbox").innerHTML = "In the sent box";
     // document.querySelector("#inboxEmails").innerHTML = '';
@@ -138,7 +123,7 @@ function load_mailbox(mailbox) {
         console.log(emails);
 
         // ... do something else with emails ...
-        debugger;
+        //debugger;
 
         //TODO: Somehow set the inbox emails to null before this?  The below works and creates a new list for sent email.
 
@@ -147,7 +132,7 @@ function load_mailbox(mailbox) {
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
 
-          debugger;
+          //debugger;
 
           // Create a list item for the new task and add the task to it
           const recipients = document.createElement("li");
@@ -162,7 +147,6 @@ function load_mailbox(mailbox) {
           timestamp.innerHTML = obj.timestamp;
           document.querySelector("#sentEmails").append(timestamp);
 
-
           console.log(obj.id);
           console.log(obj.recipients);
           console.log(obj.subject);
@@ -171,8 +155,6 @@ function load_mailbox(mailbox) {
         }
       });
   } else {
-
-
     document.querySelector("#inboxEmails").style.display = "none";
     document.querySelector("#sentEmails").style.display = "none";
     document.querySelector("#archiveEmails").style.display = "flex";
@@ -196,7 +178,7 @@ function load_mailbox(mailbox) {
           console.log(obj.subject);
           console.log(obj.timestamp);
           console.log(obj.archived);
-          debugger;
+          //debugger;
         }
       });
   }
