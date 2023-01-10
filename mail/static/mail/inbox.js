@@ -79,14 +79,13 @@ function load_mailbox(mailbox) {
         // Print emails
         console.log(emails);
 
-        let counter = 0
+        let counter = 0;
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
           debugger;
           sender2 = document.createElement("div");
           sender2.className = "inbox" + counter;
-
 
           document.querySelector("#containerInbox").append(sender2);
 
@@ -111,22 +110,12 @@ function load_mailbox(mailbox) {
 
           //TODO: need to update stylesheet here.  This marks things as read.
           if (obj.read === true) {
-            console.log(obj.id)
+            console.log(obj.id);
             //Change the classname
             sender2.className = "inbox" + counter + "_read";
-
           }
 
-          else {
-            console.log(obj.id)
-          }
-
-
-
-
-
-          counter++
-
+          counter++;
         }
 
         // ... do something else with emails ...
@@ -137,7 +126,6 @@ function load_mailbox(mailbox) {
     document.querySelector("#archiveEmails").style.display = "none";
 
     document.querySelector("#mailbox").innerHTML = "In the sent box";
-
 
     fetch("/emails/sent")
       .then((response) => response.json())
