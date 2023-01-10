@@ -110,20 +110,19 @@ function load_mailbox(mailbox) {
           sender2 = document.createElement("div");
           sender2.className = "inbox";
 
-          // document.body.appendChild(sender2);
-
           document.querySelector("#containerInbox").append(sender2);
-          // document.querySelector(".inboxSender");
 
           //create p within the div for the sender
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.sender;
           document.querySelector(".inbox").append(sender3);
-          // document.appendChild(sender3);
 
-
-
+          //create p within the div for the subject
+          subject3 = document.createElement("p");
+          subject3.className = "middle";
+          subject3.innerHTML = obj.subject;
+          document.querySelector(".inbox").append(subject3);
 
 
 
