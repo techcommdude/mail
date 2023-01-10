@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function compose_email() {
   //TODO: setting the values to
 
-  document.querySelector("#inboxEmails").style.display = "none";
+  document.querySelector("#containerInbox").style.display = "none";
   document.querySelector("#sentEmails").style.display = "none";
   document.querySelector("#archiveEmails").style.display = "none";
 
@@ -56,7 +56,7 @@ function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
   document.querySelector("#emails-view").style.display = "block";
   document.querySelector("#compose-view").style.display = "none";
-  document.querySelector("#inboxEmails").style.display = "flex";
+  document.querySelector("#containerInbox").style.display = "flex";
 
   // Show the mailbox name with the first name capitalized.
   document.querySelector("#emails-view").innerHTML = `<h3>${
@@ -79,34 +79,10 @@ function load_mailbox(mailbox) {
         // Print emails
         console.log(emails);
 
-        //Select the ul in the HTML.
-        // const inboxHTML = document.querySelector("#inboxEmails");
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
-          //debugger;
 
-          // Create the div tags for the inbox emails
-
-          // const sender = document.createElement("li");
-          // sender.innerHTML = obj.sender;
-          // document.querySelector("#inboxEmails").append(sender);
-
-          // const subject = document.createElement("li");
-          // subject.innerHTML = obj.subject;
-          // document.querySelector("#inboxEmails").append(subject);
-
-          // const timestamp = document.createElement("li");
-          // timestamp.innerHTML = obj.timestamp;
-          // document.querySelector("#inboxEmails").append(timestamp);
-
-          // console.log(obj.id);
-          // console.log(obj.sender);
-          // console.log(obj.subject);
-          // console.log(obj.timestamp);
-
-          debugger;
-          //const inboxHTML = document.querySelector("#containerInbox");
           sender2 = document.createElement("div");
           sender2.className = "inbox";
 
@@ -124,71 +100,23 @@ function load_mailbox(mailbox) {
           subject3.innerHTML = obj.subject;
           document.querySelector(".inbox").append(subject3);
 
-
-
-
-
-          //TODO: the below works but does not put the p in the container.
-          debugger;
-          // const inboxHTML = document.querySelector("#containerInbox");
-          sender2 = document.createElement("div");
-          sender2.class = "inboxSender";
-          document.querySelector("#containerInbox").append(sender2);
-
-          //create p within the div for the sender
-          sender3 = document.createElement("p");
-          sender3.class = "left";
-          sender3.innerHTML = obj.sender;
-          document.querySelector("#containerInbox").append(sender3);
-
           //create p within the div for the subject
-          subject3 = document.createElement("p");
-          subject3.class = "middle";
-          subject3.innerHTML = obj.subject;
-          document.querySelector("#containerInbox").append(subject3);
-
-          //create p within the div for the timestamp
           timestamp3 = document.createElement("p");
-          timestamp3.class = "right";
+          timestamp3.className = "right";
           timestamp3.innerHTML = obj.timestamp;
-          document.querySelector("#containerInbox").append(timestamp3);
+          document.querySelector(".inbox").append(timestamp3);
 
-          // sender2.id = "inboxSender";
-          // // const sender2 = document.getElementById("inboxSender")
-          // sender2.innerHTML = obj.sender;
-          // document.querySelector("#containerInbox").append(sender2);
-
-          // const subject2 = document.createElement("div");
-          // subject2.id = "inboxSubject";
-          // // const sender2 = document.getElementById("inboxSender")
-          // subject2.innerHTML = obj.subject;
-          // document.querySelector("#containerInbox").append(subject2);
-
-          // const timestamp2 = document.createElement("div");
-          // timestamp2.id = "inboxTimestamp";
-          // // const sender2 = document.getElementById("inboxSender")
-          // timestamp2.innerHTML = obj.timestamp;
-          // document.querySelector("#containerInbox").append(timestamp2);
-
-          // debugger;
-          // const subject2 = document.getElementById("inboxSubject")
-          // subject2.innerHTML = obj.subject;
-          // document.querySelector("#inboxSubject").appendChild(subject2);
-
-          // const timestamp2 = document.getElementById("inboxTimestamp")
-          // timestamp2.innerHTML = obj.timestamp;
-          // document.querySelector("#inboxTimestamp").appendChild(timestamp2);
         }
 
         // ... do something else with emails ...
       });
   } else if (mailbox === "sent") {
-    document.querySelector("#inboxEmails").style.display = "none";
+    document.querySelector("#containerInbox").style.display = "none";
     document.querySelector("#sentEmails").style.display = "flex";
     document.querySelector("#archiveEmails").style.display = "none";
 
     document.querySelector("#mailbox").innerHTML = "In the sent box";
-    // document.querySelector("#inboxEmails").innerHTML = '';
+
 
     fetch("/emails/sent")
       .then((response) => response.json())
@@ -229,7 +157,7 @@ function load_mailbox(mailbox) {
         }
       });
   } else {
-    document.querySelector("#inboxEmails").style.display = "none";
+    document.querySelector("#containerInbox").style.display = "none";
     document.querySelector("#sentEmails").style.display = "none";
     document.querySelector("#archiveEmails").style.display = "flex";
 
