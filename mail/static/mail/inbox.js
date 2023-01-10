@@ -106,17 +106,20 @@ function load_mailbox(mailbox) {
           // console.log(obj.timestamp);
 
           debugger;
-          const inboxHTML = document.querySelector("#containerInbox");
+          //const inboxHTML = document.querySelector("#containerInbox");
           sender2 = document.createElement("div");
-          sender2.className = "inboxSender";
-          document.body.appendChild(sender2);
+          sender2.className = "inbox";
+
+          // document.body.appendChild(sender2);
+
+          document.querySelector("#containerInbox").append(sender2);
           // document.querySelector(".inboxSender");
 
           //create p within the div for the sender
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.sender;
-          document.querySelector(".inboxSender").append(sender3);
+          document.querySelector(".inbox").append(sender3);
           // document.appendChild(sender3);
 
 
