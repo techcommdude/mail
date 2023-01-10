@@ -105,7 +105,28 @@ function load_mailbox(mailbox) {
           // console.log(obj.subject);
           // console.log(obj.timestamp);
 
-          //TODO: delete the above eventually
+          debugger;
+          const inboxHTML = document.querySelector("#containerInbox");
+          sender2 = document.createElement("div");
+          sender2.className = "inboxSender";
+          document.body.appendChild(sender2);
+          // document.querySelector(".inboxSender");
+
+          //create p within the div for the sender
+          sender3 = document.createElement("p");
+          sender3.className = "left";
+          sender3.innerHTML = obj.sender;
+          document.querySelector(".inboxSender").append(sender3);
+          // document.appendChild(sender3);
+
+
+
+
+
+
+
+
+          //TODO: the below works but does not put the p in the container.
           debugger;
           // const inboxHTML = document.querySelector("#containerInbox");
           sender2 = document.createElement("div");
@@ -129,10 +150,6 @@ function load_mailbox(mailbox) {
           timestamp3.class = "right";
           timestamp3.innerHTML = obj.timestamp;
           document.querySelector("#containerInbox").append(timestamp3);
-
-
-
-
 
           // sender2.id = "inboxSender";
           // // const sender2 = document.getElementById("inboxSender")
