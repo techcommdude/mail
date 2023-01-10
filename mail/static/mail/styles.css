@@ -52,3 +52,7 @@ ul#archiveEmails {
   border: solid;
   border-width: thin;
 }
+
+[class*="_read"] {
+    background-color: lightgray;
+  }

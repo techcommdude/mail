@@ -66,7 +66,6 @@ function load_mailbox(mailbox) {
   //TODO: logic here  for the various mailboxes.
 
   if (mailbox === "inbox") {
-    document.querySelector("#mailbox").innerHTML = "In the inbox";
 
     //TODO: When the user clicks on the link for the email.  then call the email view for display.
 
@@ -125,7 +124,7 @@ function load_mailbox(mailbox) {
     document.querySelector("#sentEmails").style.display = "flex";
     document.querySelector("#archiveEmails").style.display = "none";
 
-    document.querySelector("#mailbox").innerHTML = "In the sent box";
+    //document.querySelector("#mailbox").innerHTML = "In the sent box";
 
     fetch("/emails/sent")
       .then((response) => response.json())
@@ -170,7 +169,7 @@ function load_mailbox(mailbox) {
     document.querySelector("#sentEmails").style.display = "none";
     document.querySelector("#archiveEmails").style.display = "flex";
 
-    document.querySelector("#mailbox").innerHTML = "In the archive mail box.";
+    //document.querySelector("#mailbox").innerHTML = "In the archive mail box.";
     fetch("/emails/archive")
       .then((response) => response.json())
       .then((emails) => {
