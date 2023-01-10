@@ -1,28 +1,52 @@
 textarea {
-    min-height: 400px;
+  min-height: 400px;
 }
 
-
 ul#inboxEmails {
-
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-
+  display: flex;
+  flex-direction: row;
+  list-style: none;
 }
 
 ul#sentEmails {
-
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-
+  display: flex;
+  flex-direction: row;
+  list-style: none;
 }
 
 ul#archiveEmails {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
 
-    display: flex;
-    flex-direction: row;
-    list-style: none;
+#containerInbox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 
+.left,
+.middle,
+.right {
+  display: inline;
+  vertical-align: top;
+}
+
+.left {
+  width: 30%;
+}
+
+.middle {
+  width: 50%;
+}
+
+.right {
+  width: 25%;
+}
+
+[class*="inbox"] {
+  width: 100%;
+  display: flex;
 }
