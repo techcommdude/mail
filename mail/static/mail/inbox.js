@@ -79,12 +79,14 @@ function load_mailbox(mailbox) {
         // Print emails
         console.log(emails);
 
+        let counter = 0
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
-
+          debugger;
           sender2 = document.createElement("div");
-          sender2.className = "inbox";
+          sender2.className = "inbox" + counter;
+
 
           document.querySelector("#containerInbox").append(sender2);
 
@@ -92,19 +94,26 @@ function load_mailbox(mailbox) {
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.sender;
-          document.querySelector(".inbox").append(sender3);
+          //TODO: need to select for the div underneath #containerInbox with no class or ID.
+
+
+
+
+          document.querySelector(".inbox" + counter).append(sender3);
 
           //create p within the div for the subject
           subject3 = document.createElement("p");
           subject3.className = "middle";
           subject3.innerHTML = obj.subject;
-          document.querySelector(".inbox").append(subject3);
+          document.querySelector(".inbox" + counter).append(subject3);
 
           //create p within the div for the subject
           timestamp3 = document.createElement("p");
           timestamp3.className = "right";
           timestamp3.innerHTML = obj.timestamp;
-          document.querySelector(".inbox").append(timestamp3);
+          document.querySelector(".inbox" + counter).append(timestamp3);
+
+          counter++
 
         }
 
