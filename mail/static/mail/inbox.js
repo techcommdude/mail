@@ -80,7 +80,7 @@ function load_mailbox(mailbox) {
         console.log(emails);
 
         //Select the ul in the HTML.
-        const inboxHTML = document.querySelector("#inboxEmails");
+        // const inboxHTML = document.querySelector("#inboxEmails");
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
@@ -88,22 +88,79 @@ function load_mailbox(mailbox) {
 
           // Create the div tags for the inbox emails
 
-          const sender = document.createElement("li");
-          sender.innerHTML = obj.sender;
-          document.querySelector("#inboxEmails").append(sender);
+          // const sender = document.createElement("li");
+          // sender.innerHTML = obj.sender;
+          // document.querySelector("#inboxEmails").append(sender);
 
-          const subject = document.createElement("li");
-          subject.innerHTML = obj.subject;
-          document.querySelector("#inboxEmails").append(subject);
+          // const subject = document.createElement("li");
+          // subject.innerHTML = obj.subject;
+          // document.querySelector("#inboxEmails").append(subject);
 
-          const timestamp = document.createElement("li");
-          timestamp.innerHTML = obj.timestamp;
-          document.querySelector("#inboxEmails").append(timestamp);
+          // const timestamp = document.createElement("li");
+          // timestamp.innerHTML = obj.timestamp;
+          // document.querySelector("#inboxEmails").append(timestamp);
 
-          console.log(obj.id);
-          console.log(obj.sender);
-          console.log(obj.subject);
-          console.log(obj.timestamp);
+          // console.log(obj.id);
+          // console.log(obj.sender);
+          // console.log(obj.subject);
+          // console.log(obj.timestamp);
+
+
+          //TODO: delete the above eventually
+          debugger;
+          // const inboxHTML = document.querySelector("#containerInbox");
+          sender2 = document.createElement("div");
+          sender2.id = "inboxSender";
+          document.querySelector("#containerInbox").append(sender2);
+
+          //create p within the div.
+
+          sender3 = document.createElement("p");
+          sender3.id = "left";
+          sender3.innerHTML = obj.sender;
+          document.querySelector("#containerInbox").append(sender3);
+
+
+
+
+
+
+
+          sender2.id = "inboxSender"
+          // const sender2 = document.getElementById("inboxSender")
+          sender2.innerHTML = obj.sender;
+          document.querySelector("#containerInbox").append(sender2);
+
+
+          const subject2 = document.createElement("div");
+          subject2.id = "inboxSubject"
+          // const sender2 = document.getElementById("inboxSender")
+          subject2.innerHTML = obj.subject;
+          document.querySelector("#containerInbox").append(subject2);
+
+          const timestamp2 = document.createElement("div");
+          timestamp2.id = "inboxTimestamp"
+          // const sender2 = document.getElementById("inboxSender")
+          timestamp2.innerHTML = obj.timestamp;
+          document.querySelector("#containerInbox").append(timestamp2);
+
+
+
+
+          // debugger;
+          // const subject2 = document.getElementById("inboxSubject")
+          // subject2.innerHTML = obj.subject;
+          // document.querySelector("#inboxSubject").appendChild(subject2);
+
+          // const timestamp2 = document.getElementById("inboxTimestamp")
+          // timestamp2.innerHTML = obj.timestamp;
+          // document.querySelector("#inboxTimestamp").appendChild(timestamp2);
+
+
+
+
+
+
         }
 
         // ... do something else with emails ...
