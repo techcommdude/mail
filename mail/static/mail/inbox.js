@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#archived")
     .addEventListener("click", () => load_mailbox("archive"));
   document.querySelector("#compose").addEventListener("click", compose_email);
+  // document.querySelector("#compose-form").addEventListener("onsubmit", submit_email);
+  document.getElementById("compose-form").addEventListener("submit", submit_email);
 
   // By default, load the inbox
   load_mailbox("inbox");
@@ -34,14 +36,26 @@ function compose_email() {
     document.querySelector("#compose-subject").value = "";
     document.querySelector("#compose-body").value = "";
 
+  }
+  catch (error) {
+    console.error(error);
+  }
+  //wait until the form submits before Posting.
+  return true;
+}
+
+function submit_email(){
+  try {
+
     //TODO:Add the logic here for composing.
 
     fetch("/emails", {
       method: "POST",
       body: JSON.stringify({
-        recipients: "baz@example.com",
-        subject: "Meeting time part 2",
-        body: "Let's meet at 4 PM?",
+        recipients: document.querySelector("#compose-recipients").value,
+        subject: document.querySelector("#compose-subject").value,
+        body: document.querySelector("#compose-body").value,
+        read: false,
       }),
     })
       .then((response) => response.json())
