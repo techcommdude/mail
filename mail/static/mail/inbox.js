@@ -12,8 +12,9 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#archived")
     .addEventListener("click", () => load_mailbox("archive"));
   document.querySelector("#compose").addEventListener("click", compose_email);
-  // document.querySelector("#compose-form").addEventListener("onsubmit", submit_email);
-  document.getElementById("compose-form").addEventListener("submit", submit_email);
+  document
+    .getElementById("compose-form")
+    .addEventListener("submit", submit_email);
 
   // By default, load the inbox
   load_mailbox("inbox");
@@ -29,24 +30,19 @@ function compose_email() {
     document.querySelector("#emails-view").style.display = "none";
     document.querySelector("#compose-view").style.display = "block";
 
-    // document.querySelector("#mailbox").innerHTML = "Composing email";
-
     // Clear out composition fields
     document.querySelector("#compose-recipients").value = "";
     document.querySelector("#compose-subject").value = "";
     document.querySelector("#compose-body").value = "";
-
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
   }
   //wait until the form submits before Posting.
   return true;
 }
 
-function submit_email(){
+function submit_email() {
   try {
-
     //TODO:Add the logic here for composing.
 
     fetch("/emails", {
@@ -63,13 +59,37 @@ function submit_email(){
         // Print result
         console.log(result);
       });
-
-  }
-  catch (error) {
+  } catch (error) {
     console.error(error);
   }
   //wait until the form submits before Posting.
   return false;
+}
+
+function load_email(email, mailbox) {
+  //TODO: Need to set the mail to read here with a put statement and display everthing.
+  //TODO: Need a reply button that creates a form.
+  //TODO: Is mailbox needed above?
+
+  debugger;
+
+  fetch(`/emails/${email.id}`)
+    .then((response) => response.json())
+    .then((email) => {
+      // Print email
+      console.log(email);
+      //TODO: Set the email to read.  Need to make this change with the PUT statement
+      email.read = true;
+
+      // ... do something else with email ...
+
+
+
+      load_mailbox(inbox)
+
+
+
+    });
 }
 
 function load_mailbox(mailbox) {
@@ -113,6 +133,9 @@ function load_mailbox(mailbox) {
 
           //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
+          sender2.addEventListener("click", () => {
+            load_email(obj, mailbox);
+          });
 
           //TODO: need to create a button that lets the user archive an email.  Add an event listener for this.
 
