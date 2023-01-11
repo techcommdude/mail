@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Use buttons to toggle between views
+
   document
     .querySelector("#inbox")
     .addEventListener("click", () => load_mailbox("inbox"));
+
+  debugger;
   document
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
@@ -16,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function compose_email() {
-  //TODO: setting the values to
-
   document.querySelector("#containerInbox").style.display = "none";
   document.querySelector("#sentEmails").style.display = "none";
   document.querySelector("#archiveEmails").style.display = "none";
@@ -54,6 +55,8 @@ function compose_email() {
 
 function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
+  debugger;
+
   document.querySelector("#emails-view").style.display = "block";
   document.querySelector("#compose-view").style.display = "none";
   document.querySelector("#containerInbox").style.display = "flex";
@@ -63,14 +66,17 @@ function load_mailbox(mailbox) {
     mailbox.charAt(0).toUpperCase() + mailbox.slice(1)
   }</h3>`;
 
-  //TODO: logic here  for the various mailboxes.
+  //logic here  for the various mailboxes.
 
   if (mailbox === "inbox") {
-
-    //TODO: When the user clicks on the link for the email.  then call the email view for display.
+    document.querySelector("#containerInbox").style.display = "none";
+    document.querySelector("#containerInbox").style.display = "flex";
 
     document.querySelector("#sentEmails").style.display = "none";
     document.querySelector("#archiveEmails").style.display = "none";
+
+    //clear the page before you load the data again.
+    document.getElementById("containerInbox").innerHTML = " ";
 
     fetch("/emails/inbox")
       .then((response) => response.json())
@@ -87,6 +93,9 @@ function load_mailbox(mailbox) {
           sender2.className = "inbox" + counter;
 
           document.querySelector("#containerInbox").append(sender2);
+
+          //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
+          //Test with an alert.
 
           //create p within the div for the sender
           sender3 = document.createElement("p");
@@ -107,7 +116,7 @@ function load_mailbox(mailbox) {
           timestamp3.innerHTML = obj.timestamp;
           document.querySelector(".inbox" + counter).append(timestamp3);
 
-          //TODO: need to update stylesheet here.  This marks things as read.
+          //Need to update stylesheet here.  Flag to mark email as read.
           if (obj.read === true) {
             console.log(obj.id);
             //Change the classname
@@ -117,14 +126,16 @@ function load_mailbox(mailbox) {
           counter++;
         }
 
-        // ... do something else with emails ...
+        return true;
+
+        // Sent email
       });
   } else if (mailbox === "sent") {
     document.querySelector("#containerInbox").style.display = "none";
-    document.querySelector("#sentEmails").style.display = "flex";
-    document.querySelector("#archiveEmails").style.display = "none";
-
-    //document.querySelector("#mailbox").innerHTML = "In the sent box";
+    // document.querySelector("#sentEmails").style.display = "flex";
+    // document.querySelector("#archiveEmails").style.display = "none";
+    document.querySelector("#containerSent").style.display = "flex";
+    document.querySelector("#containerArchive").style.display = "none";
 
     fetch("/emails/sent")
       .then((response) => response.json())
@@ -134,8 +145,6 @@ function load_mailbox(mailbox) {
 
         // ... do something else with emails ...
         //debugger;
-
-        //TODO: Somehow set the inbox emails to null before this?  The below works and creates a new list for sent email.
 
         const inboxHTML = document.querySelector("#sentEmails");
 
@@ -169,7 +178,6 @@ function load_mailbox(mailbox) {
     document.querySelector("#sentEmails").style.display = "none";
     document.querySelector("#archiveEmails").style.display = "flex";
 
-    //document.querySelector("#mailbox").innerHTML = "In the archive mail box.";
     fetch("/emails/archive")
       .then((response) => response.json())
       .then((emails) => {
