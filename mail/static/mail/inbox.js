@@ -61,11 +61,18 @@ function submit_email() {
       .then((result) => {
         // Print result
         console.log(result);
+
+        //TODO: Requirement is to load the sent mailbox.
+        //load_mailbox("sent");
       });
+      debugger;
+      load_mailbox("sent");
+
   } catch (error) {
     console.error(error);
   }
   //wait until the form submits before Posting.
+  //load_mailbox("sent");
   return false;
 }
 
@@ -106,7 +113,7 @@ function load_email(email, mailbox) {
     `;
     });
 
-//Update the email to set the read = true flag
+  //Update the email to set the read = true flag
   fetch(`/emails/${email.id}`, {
     method: "PUT",
     body: JSON.stringify({
@@ -116,16 +123,12 @@ function load_email(email, mailbox) {
 }
 
 function reply(emailID) {
-
-//TODO: Reply and save the body and the subject and the email addresses. See the requirements.
-
+  //TODO: Reply and save the body and the subject and the email addresses. See the requirements.
 }
 
 function archive_email(emailID, archiveFlag) {
-
-//TODO: User can view the archived email and unarchive it. May want to just present the
-//load-email view and remove the reply button?
-
+  //TODO: User can view the archived email and unarchive it. May want to just present the
+  //load-email view and remove the reply button?
 }
 
 function load_mailbox(mailbox) {
@@ -152,7 +155,7 @@ function load_mailbox(mailbox) {
     document.querySelector("#email-open").style.display = "none";
 
     //clear the page before you load the data again.
-    document.getElementById("containerInbox").innerHTML = " ";
+    document.getElementById("containerInbox").innerHTML = "";
 
     fetch("/emails/inbox")
       .then((response) => response.json())
@@ -218,8 +221,9 @@ function load_mailbox(mailbox) {
     document.querySelector("#containerArchive").style.display = "none";
     document.querySelector("#email-open").style.display = "none";
 
+    //FIXME: It crashes here.
     //clear the page before you load the data again.
-    document.getElementById("containerSent").innerHTML = " ";
+    document.getElementById("containerSent").innerHTML = '';
 
     fetch("/emails/sent")
       .then((response) => response.json())
