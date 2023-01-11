@@ -72,8 +72,8 @@ function load_mailbox(mailbox) {
     document.querySelector("#containerInbox").style.display = "none";
     document.querySelector("#containerInbox").style.display = "flex";
 
-    document.querySelector("#sentEmails").style.display = "none";
-    document.querySelector("#archiveEmails").style.display = "none";
+    document.querySelector("#containerSent").style.display = "none";
+    document.querySelector("#containerArchive").style.display = "none";
 
     //clear the page before you load the data again.
     document.getElementById("containerInbox").innerHTML = " ";
