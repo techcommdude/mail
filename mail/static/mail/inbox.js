@@ -97,6 +97,8 @@ function load_mailbox(mailbox) {
           //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
 
+          //TODO: need to create a button that lets the user archive an email.  Add an event listener for this.
+
           //create p within the div for the sender
           sender3 = document.createElement("p");
           sender3.className = "left";
@@ -137,6 +139,9 @@ function load_mailbox(mailbox) {
     document.querySelector("#containerSent").style.display = "flex";
     document.querySelector("#containerArchive").style.display = "none";
 
+     //clear the page before you load the data again.
+    document.getElementById("containerSent").innerHTML = " ";
+
     fetch("/emails/sent")
       .then((response) => response.json())
       .then((emails) => {
@@ -146,37 +151,51 @@ function load_mailbox(mailbox) {
         // ... do something else with emails ...
         //debugger;
 
-        const inboxHTML = document.querySelector("#sentEmails");
+        let counter = 0;
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
+          debugger;
+          sender2 = document.createElement("div");
+          sender2.className = "sent" + counter;
 
-          //debugger;
+          document.querySelector("#containerSent").append(sender2);
 
-          // Create a list item for the new task and add the task to it
-          const recipients = document.createElement("li");
-          recipients.innerHTML = obj.recipients;
-          document.querySelector("#sentEmails").append(recipients);
+          //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
+          //Test with an alert.
 
-          const subject = document.createElement("li");
-          subject.innerHTML = obj.subject;
-          document.querySelector("#sentEmails").append(subject);
+          //create p within the div for the sender
+          sender3 = document.createElement("p");
+          sender3.className = "left";
+          sender3.innerHTML = obj.recipients;
 
-          const timestamp = document.createElement("li");
-          timestamp.innerHTML = obj.timestamp;
-          document.querySelector("#sentEmails").append(timestamp);
+          document.querySelector(".sent" + counter).append(sender3);
 
-          console.log(obj.id);
-          console.log(obj.recipients);
-          console.log(obj.subject);
-          console.log(obj.timestamp);
-          //debugger;
+          //create p within the div for the subject
+          subject3 = document.createElement("p");
+          subject3.className = "middle";
+          subject3.innerHTML = obj.subject;
+          document.querySelector(".sent" + counter).append(subject3);
+
+          //create p within the div for the subject
+          timestamp3 = document.createElement("p");
+          timestamp3.className = "right";
+          timestamp3.innerHTML = obj.timestamp;
+          document.querySelector(".sent" + counter).append(timestamp3);
+
+          counter ++
         }
+
+        return true;
+
       });
   } else {
     document.querySelector("#containerInbox").style.display = "none";
     document.querySelector("#sentEmails").style.display = "none";
     document.querySelector("#archiveEmails").style.display = "flex";
+
+    //clear the page before you load the data again.
+    document.getElementById("containerArchive").innerHTML = " ";
 
     fetch("/emails/archive")
       .then((response) => response.json())
@@ -184,20 +203,47 @@ function load_mailbox(mailbox) {
         // Print emails
         console.log(emails);
 
+         //TODO: need to create a button that lets the user unarhive an email.  Add an event listener for this.
+
         // ... do something else with emails ...
         //TODO: Need to test for archived value to display here. If statement?
-        const inboxHTML = document.querySelector("#sentEmails");
+
+        let counter = 0;
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
+          debugger;
+          sender2 = document.createElement("div");
+          sender2.className = "archive" + counter;
 
-          console.log(obj.id);
-          console.log(obj.recipients);
-          console.log(obj.subject);
-          console.log(obj.timestamp);
-          console.log(obj.archived);
-          //debugger;
+          document.querySelector("#containerArchive").append(sender2);
+
+          //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
+          //Test with an alert.
+
+          //create p within the div for the sender
+          sender3 = document.createElement("p");
+          sender3.className = "left";
+          sender3.innerHTML = obj.sender;
+
+          document.querySelector(".archive" + counter).append(sender3);
+
+          //create p within the div for the subject
+          subject3 = document.createElement("p");
+          subject3.className = "middle";
+          subject3.innerHTML = obj.subject;
+          document.querySelector(".archive" + counter).append(subject3);
+
+          //create p within the div for the subject
+          timestamp3 = document.createElement("p");
+          timestamp3.className = "right";
+          timestamp3.innerHTML = obj.timestamp;
+          document.querySelector(".archive" + counter).append(timestamp3);
+
+          counter ++
         }
+
+        return true;
       });
   }
 }

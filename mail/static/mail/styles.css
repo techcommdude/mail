@@ -27,6 +27,20 @@ ul#archiveEmails {
   flex-direction: column;
 }
 
+#containerSent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#containerArchive {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .left,
 .middle,
 .right {
@@ -50,6 +64,20 @@ ul#archiveEmails {
 }
 
 [class*="inbox"] {
+  width: 100%;
+  display: flex;
+  border: solid;
+  border-width: thin;
+}
+
+[class*="sent"] {
+  width: 100%;
+  display: flex;
+  border: solid;
+  border-width: thin;
+}
+
+[class*="archive"] {
   width: 100%;
   display: flex;
   border: solid;
