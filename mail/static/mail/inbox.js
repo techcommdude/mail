@@ -18,40 +18,43 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function compose_email() {
-  document.querySelector("#containerInbox").style.display = "none";
-  document.querySelector("#containerSent").style.display = "none";
-  document.querySelector("#containerArchive").style.display = "none";
+  try {
+    document.querySelector("#containerInbox").style.display = "none";
+    document.querySelector("#containerSent").style.display = "none";
+    document.querySelector("#containerArchive").style.display = "none";
 
-  // Show compose view and hide other views
-  document.querySelector("#emails-view").style.display = "none";
-  document.querySelector("#compose-view").style.display = "block";
+    // Show compose view and hide other views
+    document.querySelector("#emails-view").style.display = "none";
+    document.querySelector("#compose-view").style.display = "block";
 
-  // document.querySelector("#mailbox").innerHTML = "Composing email";
+    // document.querySelector("#mailbox").innerHTML = "Composing email";
 
-  // Clear out composition fields
-  document.querySelector("#compose-recipients").value = "";
-  document.querySelector("#compose-subject").value = "";
-  document.querySelector("#compose-body").value = "";
+    // Clear out composition fields
+    document.querySelector("#compose-recipients").value = "";
+    document.querySelector("#compose-subject").value = "";
+    document.querySelector("#compose-body").value = "";
 
-  //TODO:Add the logic here for composing.
+    //TODO:Add the logic here for composing.
 
-  // fetch("/emails", {
-  //   method: "POST",
-  //   body: JSON.stringify({
-  //     recipients: "baz@example.com",
-  //     subject: "Meeting time part 2",
-  //     body: "Let's meet at 4 PM?",
-  //   }),
-  // })
-  //   .then((response) => response.json())
-  //   .then((result) => {
-  //     // Print result
-  //     console.log(result);
-  //   });
+    fetch("/emails", {
+      method: "POST",
+      body: JSON.stringify({
+        recipients: "baz@example.com",
+        subject: "Meeting time part 2",
+        body: "Let's meet at 4 PM?",
+      }),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        // Print result
+        console.log(result);
+      });
 
-  // Catch any errors and log them to the console
-  //TODO: Put a try catch here.
-
+  }
+  catch (error) {
+    console.error(error);
+  }
+  //wait until the form submits before Posting.
   return false;
 }
 
