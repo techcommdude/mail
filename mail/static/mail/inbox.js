@@ -19,14 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function compose_email() {
   document.querySelector("#containerInbox").style.display = "none";
-  document.querySelector("#sentEmails").style.display = "none";
-  document.querySelector("#archiveEmails").style.display = "none";
+  document.querySelector("#containerSent").style.display = "none";
+  document.querySelector("#containerArchive").style.display = "none";
 
   // Show compose view and hide other views
   document.querySelector("#emails-view").style.display = "none";
   document.querySelector("#compose-view").style.display = "block";
 
-  document.querySelector("#mailbox").innerHTML = "Composing email";
+  // document.querySelector("#mailbox").innerHTML = "Composing email";
 
   // Clear out composition fields
   document.querySelector("#compose-recipients").value = "";
@@ -35,19 +35,24 @@ function compose_email() {
 
   //TODO:Add the logic here for composing.
 
-  fetch("/emails", {
-    method: "POST",
-    body: JSON.stringify({
-      recipients: "baz@example.com",
-      subject: "Meeting time part 2",
-      body: "Let's meet at 4 PM?",
-    }),
-  })
-    .then((response) => response.json())
-    .then((result) => {
-      // Print result
-      console.log(result);
-    });
+  // fetch("/emails", {
+  //   method: "POST",
+  //   body: JSON.stringify({
+  //     recipients: "baz@example.com",
+  //     subject: "Meeting time part 2",
+  //     body: "Let's meet at 4 PM?",
+  //   }),
+  // })
+  //   .then((response) => response.json())
+  //   .then((result) => {
+  //     // Print result
+  //     console.log(result);
+  //   });
+
+  // Catch any errors and log them to the console
+  //TODO: Put a try catch here.
+
+  return false;
 }
 
 function load_mailbox(mailbox) {
@@ -134,7 +139,7 @@ function load_mailbox(mailbox) {
     document.querySelector("#containerSent").style.display = "flex";
     document.querySelector("#containerArchive").style.display = "none";
 
-     //clear the page before you load the data again.
+    //clear the page before you load the data again.
     document.getElementById("containerSent").innerHTML = " ";
 
     fetch("/emails/sent")
@@ -174,11 +179,10 @@ function load_mailbox(mailbox) {
           timestamp3.innerHTML = obj.timestamp;
           document.querySelector(".sent" + counter).append(timestamp3);
 
-          counter ++
+          counter++;
         }
 
         return true;
-
       });
   } else {
     document.querySelector("#containerInbox").style.display = "none";
@@ -194,7 +198,7 @@ function load_mailbox(mailbox) {
         // Print emails
         console.log(emails);
 
-         //TODO: need to create a button that lets the user unarhive an email.  Add an event listener for this.
+        //TODO: need to create a button that lets the user unarhive an email.  Add an event listener for this.
 
         // ... do something else with emails ...
         //TODO: Need to test for archived value to display here. If statement?
@@ -230,7 +234,7 @@ function load_mailbox(mailbox) {
           timestamp3.innerHTML = obj.timestamp;
           document.querySelector(".archive" + counter).append(timestamp3);
 
-          counter ++
+          counter++;
         }
 
         return true;
