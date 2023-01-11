@@ -85,7 +85,7 @@ function load_email(email, mailbox) {
   document.querySelector("#compose-view").style.display = "none";
   document.querySelector("#email-open").style.display = "block";
 
-  const email_view = document.querySelector('#email-open');
+  const email_view = document.querySelector("#email-open");
 
   fetch(`/emails/${email.id}`)
     .then((response) => response.json())
@@ -106,20 +106,20 @@ function load_email(email, mailbox) {
       <hr>
       <div>${email.body}</div>
     `;
-
-
     });
+
+
+  fetch(`/emails/${email.id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      read: true,
+    }),
+  });
 }
 
-function reply(emailID){
+function reply(emailID) {}
 
-
-}
-
-function archive_email(emailID, archiveFlag){
-
-
-}
+function archive_email(emailID, archiveFlag) {}
 
 function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
