@@ -28,6 +28,7 @@ function compose_email() {
 
     // Show compose view and hide other views
     document.querySelector("#emails-view").style.display = "none";
+    document.querySelector("#email-open").style.display = "none";
     document.querySelector("#compose-view").style.display = "block";
 
     // Clear out composition fields
@@ -44,6 +45,8 @@ function compose_email() {
 function submit_email() {
   try {
     //TODO:Add the logic here for composing.
+
+    document.querySelector("#email-open").style.display = "none";
 
     fetch("/emails", {
       method: "POST",
@@ -73,6 +76,17 @@ function load_email(email, mailbox) {
 
   debugger;
 
+  document.querySelector("#containerInbox").style.display = "none";
+  document.querySelector("#containerSent").style.display = "none";
+  document.querySelector("#containerArchive").style.display = "none";
+
+  // Show compose view and hide other views
+  document.querySelector("#emails-view").style.display = "none";
+  document.querySelector("#compose-view").style.display = "none";
+  document.querySelector("#email-open").style.display = "block";
+
+  const email_view = document.querySelector('#email-open');
+
   fetch(`/emails/${email.id}`)
     .then((response) => response.json())
     .then((email) => {
@@ -80,16 +94,31 @@ function load_email(email, mailbox) {
       console.log(email);
       //TODO: Set the email to read.  Need to make this change with the PUT statement
       email.read = true;
-
       // ... do something else with email ...
 
-
-
-      load_mailbox(inbox)
-
+      email_view.innerHTML = `
+      <div><strong>From:</strong> <span>${email.sender}</span><div>
+      <div><strong>To:</strong> <span>${email.recipients}</span><div>
+      <div><strong>Subject:</strong> <span>${email.subject}</span><div>
+      <div><strong>Timestamp:</strong> <span>${email.timestamp}</span><div>
+      <button class="btn btn-sm btn-outline-primary mt-2" id="reply" onclick="reply('${email.id}');">Reply</button>
+      <button class="btn btn-sm btn-outline-primary mt-2" id="archive" onclick="archive_email(${email.id}, ${email.archived});">${email.archived}Archive</button>
+      <hr>
+      <div>${email.body}</div>
+    `;
 
 
     });
+}
+
+function reply(emailID){
+
+
+}
+
+function archive_email(emailID, archiveFlag){
+
+
 }
 
 function load_mailbox(mailbox) {
@@ -98,6 +127,7 @@ function load_mailbox(mailbox) {
   document.querySelector("#emails-view").style.display = "block";
   document.querySelector("#compose-view").style.display = "none";
   document.querySelector("#containerInbox").style.display = "flex";
+  document.querySelector("#email-open").style.display = "none";
 
   // Show the mailbox name with the first name capitalized.
   document.querySelector("#emails-view").innerHTML = `<h3>${
@@ -112,6 +142,7 @@ function load_mailbox(mailbox) {
 
     document.querySelector("#containerSent").style.display = "none";
     document.querySelector("#containerArchive").style.display = "none";
+    document.querySelector("#email-open").style.display = "none";
 
     //clear the page before you load the data again.
     document.getElementById("containerInbox").innerHTML = " ";
@@ -178,6 +209,7 @@ function load_mailbox(mailbox) {
     // document.querySelector("#archiveEmails").style.display = "none";
     document.querySelector("#containerSent").style.display = "flex";
     document.querySelector("#containerArchive").style.display = "none";
+    document.querySelector("#email-open").style.display = "none";
 
     //clear the page before you load the data again.
     document.getElementById("containerSent").innerHTML = " ";
@@ -228,6 +260,7 @@ function load_mailbox(mailbox) {
     document.querySelector("#containerInbox").style.display = "none";
     document.querySelector("#containerSent").style.display = "none";
     document.querySelector("#containerArchive").style.display = "flex";
+    document.querySelector("#email-open").style.display = "none";
 
     //clear the page before you load the data again.
     document.getElementById("containerArchive").innerHTML = " ";
