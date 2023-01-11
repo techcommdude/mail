@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#inbox")
     .addEventListener("click", () => load_mailbox("inbox"));
 
-  debugger;
   document
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
@@ -36,8 +35,6 @@ function compose_email() {
 
   //TODO:Add the logic here for composing.
 
-  //debugger;
-
   fetch("/emails", {
     method: "POST",
     body: JSON.stringify({
@@ -55,7 +52,6 @@ function compose_email() {
 
 function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
-  debugger;
 
   document.querySelector("#emails-view").style.display = "block";
   document.querySelector("#compose-view").style.display = "none";
@@ -88,7 +84,6 @@ function load_mailbox(mailbox) {
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
-          debugger;
           sender2 = document.createElement("div");
           sender2.className = "inbox" + counter;
 
@@ -148,14 +143,10 @@ function load_mailbox(mailbox) {
         // Print emails
         console.log(emails);
 
-        // ... do something else with emails ...
-        //debugger;
-
         let counter = 0;
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
-          debugger;
           sender2 = document.createElement("div");
           sender2.className = "sent" + counter;
 
@@ -191,8 +182,8 @@ function load_mailbox(mailbox) {
       });
   } else {
     document.querySelector("#containerInbox").style.display = "none";
-    document.querySelector("#sentEmails").style.display = "none";
-    document.querySelector("#archiveEmails").style.display = "flex";
+    document.querySelector("#containerSent").style.display = "none";
+    document.querySelector("#containerArchive").style.display = "flex";
 
     //clear the page before you load the data again.
     document.getElementById("containerArchive").innerHTML = " ";
@@ -212,7 +203,6 @@ function load_mailbox(mailbox) {
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
-          debugger;
           sender2 = document.createElement("div");
           sender2.className = "archive" + counter;
 
