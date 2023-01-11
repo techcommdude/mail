@@ -74,8 +74,6 @@ function load_email(email, mailbox) {
   //TODO: Need a reply button that creates a form.
   //TODO: Is mailbox needed above?
 
-  debugger;
-
   document.querySelector("#containerInbox").style.display = "none";
   document.querySelector("#containerSent").style.display = "none";
   document.querySelector("#containerArchive").style.display = "none";
@@ -108,7 +106,7 @@ function load_email(email, mailbox) {
     `;
     });
 
-
+//Update the email to set the read = true flag
   fetch(`/emails/${email.id}`, {
     method: "PUT",
     body: JSON.stringify({
@@ -117,9 +115,18 @@ function load_email(email, mailbox) {
   });
 }
 
-function reply(emailID) {}
+function reply(emailID) {
 
-function archive_email(emailID, archiveFlag) {}
+//TODO: Reply and save the body and the subject and the email addresses. See the requirements.
+
+}
+
+function archive_email(emailID, archiveFlag) {
+
+//TODO: User can view the archived email and unarchive it. May want to just present the
+//load-email view and remove the reply button?
+
+}
 
 function load_mailbox(mailbox) {
   // Show the mailbox and hide other views
