@@ -228,7 +228,7 @@ function load_mailbox(mailbox) {
 
         let counter = 0;
 
-        //FIXME: if emails.lenght === 0 , pop a message. "You have no email in your inbox."
+
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
@@ -273,6 +273,11 @@ function load_mailbox(mailbox) {
 
           counter++;
         }
+        if (emails.length === 0) {
+          document.querySelector(
+            "#containerInbox"
+          ).innerHTML = `<h4>You have no email in your Inbox.</h4>`;
+        }
 
         // Sent email
       });
@@ -293,8 +298,6 @@ function load_mailbox(mailbox) {
         console.log(emails);
 
         let counter = 0;
-
-        //FIXME: if emails.lenght === 0 , pop a message.  "You have not sent any emails."
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
@@ -327,6 +330,11 @@ function load_mailbox(mailbox) {
 
           counter++;
         }
+        if (emails.length === 0) {
+          document.querySelector(
+            "#containerSent"
+          ).innerHTML = `<h4>You have not sent any emails.</h4>`;
+        }
       });
   } else {
     document.querySelector("#containerInbox").style.display = "none";
@@ -344,8 +352,6 @@ function load_mailbox(mailbox) {
         console.log(emails);
 
         let counter = 0;
-
-        //FIXME: if emails.lenght === 0 , pop a message. "You currently have no archived mail."
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
@@ -381,6 +387,12 @@ function load_mailbox(mailbox) {
           document.querySelector(".archive" + counter).append(timestamp3);
 
           counter++;
+        }
+
+        if (emails.length === 0) {
+          document.querySelector(
+            "#containerArchive"
+          ).innerHTML = `<h4>You do not have any archived email.</h4>`;
         }
       });
   }
