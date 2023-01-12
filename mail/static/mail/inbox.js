@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
 
-   //TODO: for the archive button.
+   //TODO: for the archive button.  Could use these, but the listener is added to the button itself.  Could use these if
+   //the listeners were added when the HTML is created.
   //  document
   //  .querySelector("#archive")
   //  .addEventListener("click", () => archive_email(email.id, email.archived));
@@ -82,7 +83,7 @@ function submit_email() {
   //timeout so that database is updated.
   setTimeout(() => {
     load_mailbox("sent");
-    console.log("Delayed for 1 second.");
+    console.log("Delayed for 100 milliseconds.");
   }, "100");
 
   //wait until the form is submitted.
