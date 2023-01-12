@@ -4,17 +4,33 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .querySelector("#inbox")
     .addEventListener("click", () => load_mailbox("inbox"));
+  //debugger;
 
+  //This is the button at the top of the page.
   document
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
+
+  //TODO: Need another event listener for the submit button on the compose form.
+  // document
+  //   .querySelector("#test")
+  //   .addEventListener("click", () => load_mailbox("sent"));
+
+  // document
+  //   .getElementById("compose-form")
+  //   .addEventListener("submit", () => load_mailbox("sent"));
+
   document
     .querySelector("#archived")
     .addEventListener("click", () => load_mailbox("archive"));
   document.querySelector("#compose").addEventListener("click", compose_email);
+
+  //need something like this to submit the email.
   document
     .getElementById("compose-form")
     .addEventListener("submit", submit_email);
+
+  //document.querySelector("#compose-form").addEventListener("onsubmit", submit_email);
 
   // By default, load the inbox
   load_mailbox("inbox");
@@ -43,37 +59,44 @@ function compose_email() {
 }
 
 function submit_email() {
-  try {
-    //TODO:Add the logic here for composing.
+  //TODO:Add the logic here for composing.
 
-    document.querySelector("#email-open").style.display = "none";
+  document.querySelector("#email-open").style.display = "none";
 
-    fetch("/emails", {
-      method: "POST",
-      body: JSON.stringify({
-        recipients: document.querySelector("#compose-recipients").value,
-        subject: document.querySelector("#compose-subject").value,
-        body: document.querySelector("#compose-body").value,
-        read: false,
-      }),
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        // Print result
-        console.log(result);
-
-        //TODO: Requirement is to load the sent mailbox.
-        //load_mailbox("sent");
-      });
+  fetch("/emails", {
+    method: "POST",
+    body: JSON.stringify({
+      recipients: document.querySelector("#compose-recipients").value,
+      subject: document.querySelector("#compose-subject").value,
+      body: document.querySelector("#compose-body").value,
+      read: false,
+    }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      // Print result
+      console.log(result);
       debugger;
-      load_mailbox("sent");
 
-  } catch (error) {
-    console.error(error);
-  }
-  //wait until the form submits before Posting.
+      //TODO: Requirement is to load the sent mailbox.
+      //load_mailbox("sent");
+    });
+
   //load_mailbox("sent");
+
+  //     debugger;
+  //     //load_mailbox("sent");
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  //   //wait until the form submits before Posting.
+  //load_mailbox("sent");
+  //return false;
+  // }
+
+  //wait until the form is submitted.
   return false;
+
 }
 
 function load_email(email, mailbox) {
@@ -209,11 +232,12 @@ function load_mailbox(mailbox) {
           counter++;
         }
 
-        return true;
+        //return true;
 
         // Sent email
       });
   } else if (mailbox === "sent") {
+
     document.querySelector("#containerInbox").style.display = "none";
     // document.querySelector("#sentEmails").style.display = "flex";
     // document.querySelector("#archiveEmails").style.display = "none";
@@ -223,13 +247,16 @@ function load_mailbox(mailbox) {
 
     //FIXME: It crashes here.
     //clear the page before you load the data again.
-    document.getElementById("containerSent").innerHTML = '';
+    document.getElementById("containerSent").innerHTML = "";
+
+    debugger;
 
     fetch("/emails/sent")
       .then((response) => response.json())
       .then((emails) => {
         // Print emails
         console.log(emails);
+        debugger;
 
         let counter = 0;
 
@@ -237,16 +264,21 @@ function load_mailbox(mailbox) {
           let obj = emails[i];
           sender2 = document.createElement("div");
           sender2.className = "sent" + counter;
+          //debugger;
 
           document.querySelector("#containerSent").append(sender2);
 
           //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
 
+          //debugger;
+
           //create p within the div for the sender
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.recipients;
+
+          //debugger;
 
           document.querySelector(".sent" + counter).append(sender3);
 
@@ -255,6 +287,8 @@ function load_mailbox(mailbox) {
           subject3.className = "middle";
           subject3.innerHTML = obj.subject;
           document.querySelector(".sent" + counter).append(subject3);
+
+          //debugger;
 
           //create p within the div for the subject
           timestamp3 = document.createElement("p");
@@ -265,7 +299,10 @@ function load_mailbox(mailbox) {
           counter++;
         }
 
-        return true;
+
+        //preventDefault();
+
+        //return false;
       });
   } else {
     document.querySelector("#containerInbox").style.display = "none";
@@ -294,7 +331,11 @@ function load_mailbox(mailbox) {
           sender2 = document.createElement("div");
           sender2.className = "archive" + counter;
 
+          debugger;
+
           document.querySelector("#containerArchive").append(sender2);
+
+          debugger;
 
           //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
@@ -303,6 +344,8 @@ function load_mailbox(mailbox) {
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.sender;
+
+          debugger;
 
           document.querySelector(".archive" + counter).append(sender3);
 
@@ -318,10 +361,12 @@ function load_mailbox(mailbox) {
           timestamp3.innerHTML = obj.timestamp;
           document.querySelector(".archive" + counter).append(timestamp3);
 
+          debugger;
+
           counter++;
         }
 
-        return true;
+        //return true;
       });
   }
 }
