@@ -159,7 +159,12 @@ function archive_email(emailID, archiveFlag) {
       }),
     });
 
-    load_mailbox("inbox");
+    //timeout so that database is updated.
+    setTimeout(() => {
+      load_mailbox("inbox");
+      console.log("Delayed for 100 milliseconds.");
+    }, "100");
+
   } else {
     //Update the email to set the archived = false flag
     fetch(`/emails/${emailID}`, {
@@ -168,7 +173,12 @@ function archive_email(emailID, archiveFlag) {
         archived: false,
       }),
     });
-    load_mailbox("inbox");
+
+    //timeout so that database is updated.
+    setTimeout(() => {
+      load_mailbox("inbox");
+      console.log("Delayed for 100 milliseconds.");
+    }, "100");
   }
 }
 
@@ -205,6 +215,8 @@ function load_mailbox(mailbox) {
         console.log(emails);
 
         let counter = 0;
+
+        //FIXME: if emails.lenght === 0 , pop a message. "You have no email in your inbox."
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
@@ -270,6 +282,8 @@ function load_mailbox(mailbox) {
 
         let counter = 0;
 
+        //FIXME: if emails.lenght === 0 , pop a message.  "You have not sent any emails."
+
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
           sender2 = document.createElement("div");
@@ -323,6 +337,8 @@ function load_mailbox(mailbox) {
         //TODO: Need to test for archived value to display here. If statement?
 
         let counter = 0;
+
+        //FIXME: if emails.lenght === 0 , pop a message. "You currently have no archived mail."
 
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
