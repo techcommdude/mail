@@ -154,7 +154,7 @@ function archive_email(emailID, archiveFlag) {
       }),
     });
   } else {
-    //Update the email to set the archived = true flag
+    //Update the email to set the archived = false flag
     fetch(`/emails/${emailID}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -324,7 +324,11 @@ function load_mailbox(mailbox) {
           document.querySelector("#containerArchive").append(sender2);
 
           //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
-          //Test with an alert.
+          //Set a flag to say that archive = True in this case so display "Unarchive" button
+
+          sender2.addEventListener("click", () => {
+            load_email(obj, mailbox);
+          });
 
           //create p within the div for the sender
           sender3 = document.createElement("p");
