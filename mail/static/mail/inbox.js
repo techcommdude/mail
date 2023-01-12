@@ -125,9 +125,11 @@ function load_email(email, mailbox) {
       <hr>
       <div>${email.body}</div>
     `;
+
+      if (email.archived === true) {
+        document.getElementById("archiveIT").innerHTML = "Unarchive";
+      }
     });
-
-
 
   //Update the email to set the read = true flag
   fetch(`/emails/${email.id}`, {
@@ -136,11 +138,6 @@ function load_email(email, mailbox) {
       read: true,
     }),
   });
-
-  //debugger;
-  if (email.archived === true) {
-    document.getElementById("archiveIT").innerHTML = "Unarchive";
-  }
 }
 
 function reply(emailID) {
@@ -150,7 +147,8 @@ function reply(emailID) {
 function archive_email(emailID, archiveFlag) {
   //User can view the archived email and unarchive it. May want to just present the
   //load-email view and remove the reply button?
-  debugger;
+
+  //FIXME: Load the user's inbox after archiving or unarchiving.
 
   if (archiveFlag === false) {
     //Update the email to set the archived = true flag
@@ -160,6 +158,8 @@ function archive_email(emailID, archiveFlag) {
         archived: true,
       }),
     });
+
+    load_mailbox("inbox");
   } else {
     //Update the email to set the archived = false flag
     fetch(`/emails/${emailID}`, {
@@ -168,6 +168,7 @@ function archive_email(emailID, archiveFlag) {
         archived: false,
       }),
     });
+    load_mailbox("inbox");
   }
 }
 
