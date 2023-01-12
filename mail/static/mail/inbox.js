@@ -10,6 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
 
+   //TODO: for the archive button.
+  //  document
+  //  .querySelector("#archive")
+  //  .addEventListener("click", () => archive_email(email.id, email.archived));
+
+    //TODO: for the reply button.
+    // document
+    // .querySelector("#reply")
+    // .addEventListener("click", () => reply(email.id));
+
   document
     .querySelector("#archived")
     .addEventListener("click", () => load_mailbox("archive"));
@@ -132,6 +142,7 @@ function reply(emailID) {
 function archive_email(emailID, archiveFlag) {
   //TODO: User can view the archived email and unarchive it. May want to just present the
   //load-email view and remove the reply button?
+  debugger;
 }
 
 function load_mailbox(mailbox) {
@@ -212,7 +223,6 @@ function load_mailbox(mailbox) {
           counter++;
         }
 
-        //return true;
 
         // Sent email
       });
