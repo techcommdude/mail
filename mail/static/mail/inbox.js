@@ -10,17 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
 
-  //TODO: for the archive button.  Could use these, but the listener is added to the button itself.  Could use these if
-  //the listeners were added when the HTML is created.
-  //  document
-  //  .querySelector("#archive")
-  //  .addEventListener("click", () => archive_email(email.id, email.archived));
-
-  //TODO: for the reply button.
-  // document
-  // .querySelector("#reply")
-  // .addEventListener("click", () => reply(email.id));
-
   document
     .querySelector("#archived")
     .addEventListener("click", () => load_mailbox("archive"));
@@ -63,7 +52,7 @@ function compose_email() {
 }
 
 function submit_email() {
-  //TODO:Add the logic here for composing.
+  //add the logic here for composing.
 
   document.querySelector("#email-open").style.display = "none";
 
@@ -93,9 +82,8 @@ function submit_email() {
 }
 
 function load_email(email, mailbox) {
-  //TODO: Need to set the mail to read here with a put statement and display everthing.
-  //TODO: Need a reply button that creates a form.
-  //TODO: Is mailbox needed above?  recipient is sender of original.
+  //Need to set the mail to read here with a put statement and display everthing.
+  //Need a reply button that creates a form.
 
   document.querySelector("#containerInbox").style.display = "none";
   document.querySelector("#containerSent").style.display = "none";
@@ -113,7 +101,7 @@ function load_email(email, mailbox) {
     .then((email) => {
       // Print email
       console.log(email);
-     // ... do something else with email ...
+      // ... do something else with email ...
 
       email_view.innerHTML = `
       <div><strong>From:</strong> <span>${email.sender}</span><div>
@@ -141,13 +129,30 @@ function load_email(email, mailbox) {
 }
 
 function reply(emailID) {
-  //TODO: Reply and save the body and the subject and the email addresses. See the requirements.
+  //Reply and save the body and the subject and the email addresses. See the requirements.
   ////Do a PUT afterwards to update the body of the email.
-  debugger;
+  //Create the form
   compose_email();
 
+  fetch(`/emails/${emailID}`)
+    .then((response) => response.json())
+    .then((email) => {
+      // Print email
+      console.log(email);
 
+      //FIXME: add a carriage return before email body?
 
+      const re = email.subject.slice(0, 2) === "Re" ? "" : "Re: ";
+      document.querySelector("#compose-recipients").value = email.sender;
+      document.querySelector("#compose-subject").value = re + email.subject;
+      document.querySelector(
+        "#compose-body"
+      ).value = `On ${email.timestamp} ${email.sender} wrote: ${email.body}`;
+    })
+
+    .catch((error) => {
+      console.log(error);
+    });
 
   return false;
 }
@@ -156,7 +161,7 @@ function archive_email(emailID, archiveFlag) {
   //User can view the archived email and unarchive it. May want to just present the
   //load-email view and remove the reply button?
 
-  //FIXME: Load the user's inbox after archiving or unarchiving.
+  //Load the user's inbox after archiving or unarchiving.
 
   if (archiveFlag === false) {
     //Update the email to set the archived = true flag
@@ -172,7 +177,6 @@ function archive_email(emailID, archiveFlag) {
       load_mailbox("inbox");
       console.log("Delayed for 100 milliseconds.");
     }, "100");
-
   } else {
     //Update the email to set the archived = false flag
     fetch(`/emails/${emailID}`, {
@@ -233,13 +237,13 @@ function load_mailbox(mailbox) {
 
           document.querySelector("#containerInbox").append(sender2);
 
-          //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
+          //add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
           sender2.addEventListener("click", () => {
             load_email(obj, mailbox);
           });
 
-          //TODO: need to create a button that lets the user archive an email.  Add an event listener for this.
+          //need to create a button that lets the user archive an email.  Add an event listener for this.
 
           //create p within the div for the sender
           sender3 = document.createElement("p");
@@ -299,7 +303,7 @@ function load_mailbox(mailbox) {
 
           document.querySelector("#containerSent").append(sender2);
 
-          //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
+          //add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
 
           //create p within the div for the sender
@@ -339,11 +343,6 @@ function load_mailbox(mailbox) {
         // Print emails
         console.log(emails);
 
-        //TODO: need to create a button that lets the user unarhive an email.  Add an event listener for this.
-
-        // ... do something else with emails ...
-        //TODO: Need to test for archived value to display here. If statement?
-
         let counter = 0;
 
         //FIXME: if emails.lenght === 0 , pop a message. "You currently have no archived mail."
@@ -355,7 +354,7 @@ function load_mailbox(mailbox) {
 
           document.querySelector("#containerArchive").append(sender2);
 
-          //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
+          //add an event listener for each div to open the view email function. You can get the ID at this point.
           //Set a flag to say that archive = True in this case so display "Unarchive" button
 
           sender2.addEventListener("click", () => {
