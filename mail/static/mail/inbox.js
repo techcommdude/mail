@@ -100,6 +100,8 @@ function load_email(email, mailbox) {
       // Print email
       console.log(email);
       // ... do something else with email ...
+//set the email to read.
+      //email.read = true;
 
       email_view.innerHTML = `
       <div><strong>From:</strong> <span>${email.sender}</span><div>
