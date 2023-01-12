@@ -45,8 +45,6 @@ function compose_email() {
   document.querySelector("#compose-subject").value = "";
   document.querySelector("#compose-body").value = "";
 
-  //FIXME: If the email is a reply then prefill th appropriate fields.
-
   //wait until the form submits before Posting.
   return true;
 }
@@ -116,6 +114,13 @@ function load_email(email, mailbox) {
 
       if (email.archived === true) {
         document.getElementById("archiveIT").innerHTML = "Unarchive";
+      }
+
+      debugger;
+      if (mailbox === "sent") {
+        //remove the archive button, but leave the reply buttons.
+
+        document.querySelector("#archiveIT").remove();
       }
     });
 
@@ -228,8 +233,6 @@ function load_mailbox(mailbox) {
 
         let counter = 0;
 
-
-
         for (let i = 0; i < emails.length; i++) {
           let obj = emails[i];
           sender2 = document.createElement("div");
@@ -308,6 +311,10 @@ function load_mailbox(mailbox) {
 
           //add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
+
+          sender2.addEventListener("click", () => {
+            load_email(obj, mailbox);
+          });
 
           //create p within the div for the sender
           sender3 = document.createElement("p");
