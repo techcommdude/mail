@@ -111,7 +111,7 @@ function load_email(email, mailbox) {
       <button class="btn btn-sm btn-outline-primary mt-2" id="reply" onclick="reply('${email.id}');">Reply</button>
       <button class="btn btn-sm btn-outline-primary mt-2" id="archiveIT" onclick="archive_email(${email.id}, ${email.archived});">Archive</button>
       <hr>
-      <div>${email.body}</div>
+      <div>\n${email.body}\n</div>
     `;
 
       if (email.archived === true) {
@@ -147,7 +147,7 @@ function reply(emailID) {
       document.querySelector("#compose-subject").value = re + email.subject;
       document.querySelector(
         "#compose-body"
-      ).value = `On ${email.timestamp} ${email.sender} wrote: ${email.body}`;
+      ).value = `\n\nOn ${email.timestamp} ${email.sender} wrote:  ${email.body}\n`;
     })
 
     .catch((error) => {
