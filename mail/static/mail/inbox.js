@@ -4,56 +4,47 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .querySelector("#inbox")
     .addEventListener("click", () => load_mailbox("inbox"));
-  //debugger;
 
-  //This is the button at the top of the page.
+  //This is the Sent button at the top of the page.
   document
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
 
-  //TODO: Need another event listener for the submit button on the compose form.
-  // document
-  //   .querySelector("#test")
-  //   .addEventListener("click", () => load_mailbox("sent"));
-
-  // document
-  //   .getElementById("compose-form")
-  //   .addEventListener("submit", () => load_mailbox("sent"));
-
   document
     .querySelector("#archived")
     .addEventListener("click", () => load_mailbox("archive"));
+
+  //Listener on the Compose button at the top of the page.
   document.querySelector("#compose").addEventListener("click", compose_email);
 
-  //need something like this to submit the email.
+  // Send Mail: When a user submits the email composition form.  Prevent default is needed to prevent the inbox from loading by default.
+  //This is the listener on the form.
   document
-    .getElementById("compose-form")
-    .addEventListener("submit", submit_email);
-
-  //document.querySelector("#compose-form").addEventListener("onsubmit", submit_email);
+    .querySelector("#compose-form")
+    .addEventListener("submit", (event) => {
+      event.preventDefault();
+      submit_email();
+    });
 
   // By default, load the inbox
   load_mailbox("inbox");
 });
 
 function compose_email() {
-  try {
-    document.querySelector("#containerInbox").style.display = "none";
-    document.querySelector("#containerSent").style.display = "none";
-    document.querySelector("#containerArchive").style.display = "none";
+  document.querySelector("#containerInbox").style.display = "none";
+  document.querySelector("#containerSent").style.display = "none";
+  document.querySelector("#containerArchive").style.display = "none";
 
-    // Show compose view and hide other views
-    document.querySelector("#emails-view").style.display = "none";
-    document.querySelector("#email-open").style.display = "none";
-    document.querySelector("#compose-view").style.display = "block";
+  // Show compose view and hide other views
+  document.querySelector("#emails-view").style.display = "none";
+  document.querySelector("#email-open").style.display = "none";
+  document.querySelector("#compose-view").style.display = "block";
 
-    // Clear out composition fields
-    document.querySelector("#compose-recipients").value = "";
-    document.querySelector("#compose-subject").value = "";
-    document.querySelector("#compose-body").value = "";
-  } catch (error) {
-    console.error(error);
-  }
+  // Clear out composition fields
+  document.querySelector("#compose-recipients").value = "";
+  document.querySelector("#compose-subject").value = "";
+  document.querySelector("#compose-body").value = "";
+
   //wait until the form submits before Posting.
   return true;
 }
@@ -76,27 +67,16 @@ function submit_email() {
     .then((result) => {
       // Print result
       console.log(result);
-      debugger;
-
-      //TODO: Requirement is to load the sent mailbox.
-      //load_mailbox("sent");
     });
 
-  //load_mailbox("sent");
-
-  //     debugger;
-  //     //load_mailbox("sent");
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  //   //wait until the form submits before Posting.
-  //load_mailbox("sent");
-  //return false;
-  // }
+  //timeout so that database is updated.
+  setTimeout(() => {
+    load_mailbox("sent");
+    console.log("Delayed for 1 second.");
+  }, "100");
 
   //wait until the form is submitted.
   return false;
-
 }
 
 function load_email(email, mailbox) {
@@ -237,7 +217,6 @@ function load_mailbox(mailbox) {
         // Sent email
       });
   } else if (mailbox === "sent") {
-
     document.querySelector("#containerInbox").style.display = "none";
     // document.querySelector("#sentEmails").style.display = "flex";
     // document.querySelector("#archiveEmails").style.display = "none";
@@ -245,18 +224,13 @@ function load_mailbox(mailbox) {
     document.querySelector("#containerArchive").style.display = "none";
     document.querySelector("#email-open").style.display = "none";
 
-    //FIXME: It crashes here.
-    //clear the page before you load the data again.
     document.getElementById("containerSent").innerHTML = "";
-
-    debugger;
 
     fetch("/emails/sent")
       .then((response) => response.json())
       .then((emails) => {
         // Print emails
         console.log(emails);
-        debugger;
 
         let counter = 0;
 
@@ -264,21 +238,16 @@ function load_mailbox(mailbox) {
           let obj = emails[i];
           sender2 = document.createElement("div");
           sender2.className = "sent" + counter;
-          //debugger;
 
           document.querySelector("#containerSent").append(sender2);
 
           //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
 
-          //debugger;
-
           //create p within the div for the sender
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.recipients;
-
-          //debugger;
 
           document.querySelector(".sent" + counter).append(sender3);
 
@@ -288,8 +257,6 @@ function load_mailbox(mailbox) {
           subject3.innerHTML = obj.subject;
           document.querySelector(".sent" + counter).append(subject3);
 
-          //debugger;
-
           //create p within the div for the subject
           timestamp3 = document.createElement("p");
           timestamp3.className = "right";
@@ -298,11 +265,6 @@ function load_mailbox(mailbox) {
 
           counter++;
         }
-
-
-        //preventDefault();
-
-        //return false;
       });
   } else {
     document.querySelector("#containerInbox").style.display = "none";
@@ -331,11 +293,7 @@ function load_mailbox(mailbox) {
           sender2 = document.createElement("div");
           sender2.className = "archive" + counter;
 
-          debugger;
-
           document.querySelector("#containerArchive").append(sender2);
-
-          debugger;
 
           //TODO: add an event listener for each div to open the view email function. You can get the ID at this point.
           //Test with an alert.
@@ -344,8 +302,6 @@ function load_mailbox(mailbox) {
           sender3 = document.createElement("p");
           sender3.className = "left";
           sender3.innerHTML = obj.sender;
-
-          debugger;
 
           document.querySelector(".archive" + counter).append(sender3);
 
@@ -361,12 +317,8 @@ function load_mailbox(mailbox) {
           timestamp3.innerHTML = obj.timestamp;
           document.querySelector(".archive" + counter).append(timestamp3);
 
-          debugger;
-
           counter++;
         }
-
-        //return true;
       });
   }
 }
