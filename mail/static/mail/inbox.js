@@ -56,6 +56,8 @@ function compose_email() {
   document.querySelector("#compose-subject").value = "";
   document.querySelector("#compose-body").value = "";
 
+  //FIXME: If the email is a reply then prefill th appropriate fields.
+
   //wait until the form submits before Posting.
   return true;
 }
@@ -93,7 +95,7 @@ function submit_email() {
 function load_email(email, mailbox) {
   //TODO: Need to set the mail to read here with a put statement and display everthing.
   //TODO: Need a reply button that creates a form.
-  //TODO: Is mailbox needed above?
+  //TODO: Is mailbox needed above?  recipient is sender of original.
 
   document.querySelector("#containerInbox").style.display = "none";
   document.querySelector("#containerSent").style.display = "none";
@@ -111,9 +113,7 @@ function load_email(email, mailbox) {
     .then((email) => {
       // Print email
       console.log(email);
-      //TODO: Set the email to read.  Need to make this change with the PUT statement
-      email.read = true;
-      // ... do something else with email ...
+     // ... do something else with email ...
 
       email_view.innerHTML = `
       <div><strong>From:</strong> <span>${email.sender}</span><div>
@@ -142,6 +142,14 @@ function load_email(email, mailbox) {
 
 function reply(emailID) {
   //TODO: Reply and save the body and the subject and the email addresses. See the requirements.
+  ////Do a PUT afterwards to update the body of the email.
+  debugger;
+  compose_email();
+
+
+
+
+  return false;
 }
 
 function archive_email(emailID, archiveFlag) {
