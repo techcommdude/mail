@@ -121,11 +121,13 @@ function load_email(email, mailbox) {
       <div><strong>Subject:</strong> <span>${email.subject}</span><div>
       <div><strong>Timestamp:</strong> <span>${email.timestamp}</span><div>
       <button class="btn btn-sm btn-outline-primary mt-2" id="reply" onclick="reply('${email.id}');">Reply</button>
-      <button class="btn btn-sm btn-outline-primary mt-2" id="archive" onclick="archive_email(${email.id}, ${email.archived});">Archive</button>
+      <button class="btn btn-sm btn-outline-primary mt-2" id="archiveIT" onclick="archive_email(${email.id}, ${email.archived});">Archive</button>
       <hr>
       <div>${email.body}</div>
     `;
     });
+
+
 
   //Update the email to set the read = true flag
   fetch(`/emails/${email.id}`, {
@@ -134,6 +136,11 @@ function load_email(email, mailbox) {
       read: true,
     }),
   });
+
+  //debugger;
+  if (email.archived === true) {
+    document.getElementById("archiveIT").innerHTML = "Unarchive";
+  }
 }
 
 function reply(emailID) {
