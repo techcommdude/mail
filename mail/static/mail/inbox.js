@@ -10,16 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#sent")
     .addEventListener("click", () => load_mailbox("sent"));
 
-   //TODO: for the archive button.  Could use these, but the listener is added to the button itself.  Could use these if
-   //the listeners were added when the HTML is created.
+  //TODO: for the archive button.  Could use these, but the listener is added to the button itself.  Could use these if
+  //the listeners were added when the HTML is created.
   //  document
   //  .querySelector("#archive")
   //  .addEventListener("click", () => archive_email(email.id, email.archived));
 
-    //TODO: for the reply button.
-    // document
-    // .querySelector("#reply")
-    // .addEventListener("click", () => reply(email.id));
+  //TODO: for the reply button.
+  // document
+  // .querySelector("#reply")
+  // .addEventListener("click", () => reply(email.id));
 
   document
     .querySelector("#archived")
@@ -141,9 +141,27 @@ function reply(emailID) {
 }
 
 function archive_email(emailID, archiveFlag) {
-  //TODO: User can view the archived email and unarchive it. May want to just present the
+  //User can view the archived email and unarchive it. May want to just present the
   //load-email view and remove the reply button?
   debugger;
+
+  if (archiveFlag === false) {
+    //Update the email to set the archived = true flag
+    fetch(`/emails/${emailID}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        archived: true,
+      }),
+    });
+  } else {
+    //Update the email to set the archived = true flag
+    fetch(`/emails/${emailID}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        archived: false,
+      }),
+    });
+  }
 }
 
 function load_mailbox(mailbox) {
@@ -223,7 +241,6 @@ function load_mailbox(mailbox) {
 
           counter++;
         }
-
 
         // Sent email
       });
