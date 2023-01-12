@@ -116,15 +116,11 @@ function load_email(email, mailbox) {
         document.getElementById("archiveIT").innerHTML = "Unarchive";
       }
 
+      debugger;
       if (mailbox === "sent") {
         //remove the archive button, but leave the reply buttons.
 
         document.querySelector("#archiveIT").remove();
-      }
-      if (mailbox === "archive") {
-        //remove the archive button, but leave the reply buttons.
-
-        document.querySelector("#reply").remove();
       }
     });
 

@@ -1,0 +1,89 @@
+textarea {
+  min-height: 400px;
+}
+
+ul#inboxEmails {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+ul#sentEmails {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+ul#archiveEmails {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+#containerInbox {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#containerSent {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#containerArchive {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.left,
+.middle,
+.right {
+  display: inline;
+  vertical-align: top;
+}
+
+.left {
+  width: 35%;
+  font-weight: bold;
+
+}
+
+.middle {
+  width: 50%;
+}
+
+.right {
+  width: 15%;
+  color: grey;
+}
+
+[class*="inbox"] {
+  width: 100%;
+  display: flex;
+  border: solid;
+  border-width: thin;
+}
+
+[class*="sent"] {
+  width: 100%;
+  display: flex;
+  border: solid;
+  border-width: thin;
+}
+
+[class*="archive"] {
+  width: 100%;
+  display: flex;
+  border: solid;
+  border-width: thin;
+}
+
+[class*="_read"] {
+    background-color: lightgray;
+  }
