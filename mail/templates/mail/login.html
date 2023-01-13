@@ -3,24 +3,35 @@
 
 {% block body %}
 
-    <h2>Login</h2>
+<h2>Login</h2>
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
+{% if message %}
+<div>{{ message }}</div>
+{% endif %}
 
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="email" name="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <input autofocus class="form-control" type="email" name="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+        <input class="form-control" type="password" name="password" placeholder="Password">
+    </div>
+    <input class="btn btn-primary" type="submit" value="Login">
+</form>
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+
+<p></p>
+
+<p>You can use these pre-configured accounts for this demo application or you can create your own credentials:</p>
+
+<ul>
+    <li><strong>User: </strong>guest@example.com <strong>Password: </strong>123</li>
+    <li><strong>User: </strong>foo@example.com <strong>Password: </strong>123</li>
+    <li><strong>User: </strong>bar@example.com <strong>Password: </strong>123</li>
+    <li><strong>User: </strong>baz@example.com <strong>Password: </strong>123</li>
+</ul>
 
 {% endblock %}
 
