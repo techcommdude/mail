@@ -1,3 +1,7 @@
+body {
+  min-width: 475px;
+}
+
 textarea {
   min-height: 400px;
 }
@@ -51,7 +55,6 @@ ul#archiveEmails {
 .left {
   width: 35%;
   font-weight: bold;
-
 }
 
 .middle {
@@ -85,5 +88,21 @@ ul#archiveEmails {
 }
 
 [class*="_read"] {
-    background-color: lightgray;
-  }
+  background-color: lightgray;
+}
+
+[class*="inbox"]:hover {
+  background-color: rgb(243, 132, 132);
+}
+
+[class*="sent"]:hover {
+  background-color: rgb(243, 132, 132);
+}
+
+[class*="archive"]:hover {
+  background-color: rgb(243, 132, 132);
+}
+
+body {
+  background-color: cornsilk;
+}

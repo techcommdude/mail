@@ -100,6 +100,8 @@ function load_email(email, mailbox) {
       // Print email
       console.log(email);
       // ... do something else with email ...
+//set the email to read.
+      //email.read = true;
 
       email_view.innerHTML = `
       <div><strong>From:</strong> <span>${email.sender}</span><div>
@@ -116,11 +118,15 @@ function load_email(email, mailbox) {
         document.getElementById("archiveIT").innerHTML = "Unarchive";
       }
 
-      debugger;
       if (mailbox === "sent") {
         //remove the archive button, but leave the reply buttons.
 
         document.querySelector("#archiveIT").remove();
+      }
+      if (mailbox === "archive") {
+        //remove the archive button, but leave the reply buttons.
+
+        document.querySelector("#reply").remove();
       }
     });
 
