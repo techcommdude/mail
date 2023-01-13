@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Use buttons to toggle between views
 
+  //FIXME:
+
   document
     .querySelector("#inbox")
     .addEventListener("click", () => load_mailbox("inbox"));
