@@ -1,6 +1,6 @@
 # Mock email application built with Javascript
 
-This project is a single-page Javascript mock email client application that makes API calls to compose, send and archive/unarchive email.  This project utilizes pre-built Python APIs with GET, POST and PUT requests in Javascript.
+This project is a single-page Javascript application.  It is a mock email client application that makes API calls to compose, send and archive/unarchive email.  This project utilizes pre-built Python APIs with GET, POST and PUT requests in Javascript.  AJAX is used to fetch data from the server.
 
 Feel free to  use these credentials for the application:
 User email: **guest@example.com**
