@@ -21,7 +21,7 @@ You can log in to the Heroku app above with this account. No registration is req
 
 Some of the technologies I used when building this demo application:
 
-* Javascript
+* Javascript (vanilla, not a framework)
 * Visual Studio Code
 * Django web framework
 * Git
