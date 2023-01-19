@@ -1,5 +1,6 @@
 body {
   min-width: 475px;
+  background-color: cornsilk;
 }
 
 textarea {
@@ -71,6 +72,7 @@ ul#archiveEmails {
   display: flex;
   border: solid;
   border-width: thin;
+  background-color: white;
 }
 
 [class*="sent"] {
@@ -78,6 +80,7 @@ ul#archiveEmails {
   display: flex;
   border: solid;
   border-width: thin;
+  background-color: white;
 }
 
 [class*="archive"] {
@@ -85,9 +88,10 @@ ul#archiveEmails {
   display: flex;
   border: solid;
   border-width: thin;
+  background-color: white;
 }
 
-[class*="_read"] {
+[class$="_read"] {
   background-color: lightgray;
 }
 
@@ -101,8 +105,4 @@ ul#archiveEmails {
 
 [class*="archive"]:hover {
   background-color: rgb(243, 132, 132);
-}
-
-body {
-  background-color: cornsilk;
 }
