@@ -21,7 +21,7 @@ heroku git:remote -a mail-client-gfarnell
 
 **Perhaps do this and make sure everything is committed to Git:**
 
-git add .
+python ./manage.py collectstatic
 
 **Commit the files**
 
