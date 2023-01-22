@@ -1,6 +1,6 @@
 body {
   min-width: 475px;
-  background-color: cornsilk;
+  background-color: rgb(208, 238, 248);
 }
 
 textarea {
@@ -96,13 +96,13 @@ ul#archiveEmails {
 }
 
 [class*="inbox"]:hover {
-  background-color: rgb(243, 132, 132);
+  background-color: rgb(87, 199, 236);
 }
 
 [class*="sent"]:hover {
-  background-color: rgb(243, 132, 132);
+  background-color: rgb(87, 199, 236);
 }
 
 [class*="archive"]:hover {
-  background-color: rgb(243, 132, 132);
+  background-color: rgb(87, 199, 236);
 }
