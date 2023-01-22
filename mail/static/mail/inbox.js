@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Use buttons to toggle between views
 
-  //FIXME:
-
   document
     .querySelector("#inbox")
     .addEventListener("click", () => load_mailbox("inbox"));
@@ -16,9 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .querySelector("#archived")
     .addEventListener("click", () => load_mailbox("archive"));
 
-  document
-  .querySelector("#compose")
-  .addEventListener("click", (event) => {
+  document.querySelector("#compose").addEventListener("click", (event) => {
     event.preventDefault();
     compose_email();
   });
@@ -106,7 +102,7 @@ function load_email(email, mailbox) {
       // Print email
       console.log(email);
       // ... do something else with email ...
-//set the email to read.
+      //set the email to read.
       //email.read = true;
 
       email_view.innerHTML = `
