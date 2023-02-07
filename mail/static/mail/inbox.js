@@ -153,7 +153,6 @@ function reply(emailID) {
       // Print email
 
       console.log(email);
-      debugger;
 
       //FIXME: add a carriage return before email body?
 
