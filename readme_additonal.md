@@ -23,6 +23,10 @@ heroku git:remote -a mail-client-gfarnell
 
 python ./manage.py collectstatic
 
+**Add the files to Git**
+
+git add .
+
 **Commit the files**
 
 git commit -am "make it better"
