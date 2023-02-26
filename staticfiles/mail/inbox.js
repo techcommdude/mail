@@ -151,6 +151,7 @@ function reply(emailID) {
     .then((response) => response.json())
     .then((email) => {
       // Print email
+
       console.log(email);
 
       //FIXME: add a carriage return before email body?
@@ -237,6 +238,7 @@ function load_mailbox(mailbox) {
       .then((response) => response.json())
       .then((emails) => {
         // Print emails
+        debugger;
         console.log(emails);
 
         let counter = 0;
