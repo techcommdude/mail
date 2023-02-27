@@ -12,8 +12,6 @@ You can also register and create your own credentials.
 
 This project is deployed on Heroku (please have patience since the instance is likely sleeping but will wake up after a few seconds): <a href="https://mail-client-gfarnell.herokuapp.com/">https://mail-client-gfarnell.herokuapp.com/</a>
 
-A screencast of the project can be found here: <a href="https://youtu.be/V2s00sozPkU">https://youtu.be/V2s00sozPkU</a>
-
 A screencast of the project is available on YouTube:
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=V2s00sozPkU
