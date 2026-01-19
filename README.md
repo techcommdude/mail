@@ -10,8 +10,6 @@ You can also use these email addresses with the same password of "123" without t
 
 You can also register and create your own credentials.
 
-This project is deployed on Heroku (please have patience since the instance is likely sleeping but will wake up after a few seconds): <a href="https://mail-client-gfarnell.herokuapp.com/">https://mail-client-gfarnell.herokuapp.com/</a>
-
 A screencast of the project is available on YouTube:
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=V2s00sozPkU
@@ -73,5 +71,6 @@ Using JavaScript, HTML, and CSS, complete the implementation of your single-page
 ![Mail Application](Mail_2.png)
 
 ![Mail Application](Mail_3.png)
+
 
 ![Mail Application](Mail_4.png)
