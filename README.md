@@ -10,7 +10,7 @@ You can also use these email addresses with the same password of "123" without t
 
 You can also register and create your own credentials.
 
-A screencast of the project is available on YouTube:
+A screencast of the project is available on [YouTube](https://www.youtube.com/watch?v=V2s00sozPkU):
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=V2s00sozPkU
 " target="_blank"><img src="mail/static/mail/Mail.gif"
@@ -74,3 +74,4 @@ Using JavaScript, HTML, and CSS, complete the implementation of your single-page
 
 
 ![Mail Application](Mail_4.png)
+
